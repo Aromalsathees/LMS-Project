@@ -26,8 +26,16 @@ SECRET_KEY = 'django-insecure-pu)kg_o+g#q!y%qq*7)aq0rrfo%4ze66-k=3cu5dx1a=q^slgj
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 AUTH_USER_MODEL = 'users.CustomUser'
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'admin_panel',
     'adviser_pannel',
     'students',

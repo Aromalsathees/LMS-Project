@@ -38,4 +38,10 @@ class Course_Enrolled_students(models.Model):
 
     def __str__(self):
         return self.student_name.user_name.username
+
+
+class Analyst_Board(models.Model):
+    total_users = models.ForeignKey(Manage_users, on_delete = modles.CASCASDE)
+    active_courses = models.ForeignKey(Courses , on_delete=models.CASCADE)
+
     

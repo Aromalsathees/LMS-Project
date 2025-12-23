@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework .views import APIView
 from rest_framework .response import Response
 from rest_framework import status
-from rest_framwork .permissions import IsAuthenticated , AllowAny
+from rest_framework .permissions import IsAuthenticated , AllowAny
 from .serializer import *
 # Create your views here.
 
@@ -17,7 +17,7 @@ class Create_Course(APIView):
         return Response({'message':'something error happend' , 'error':serializer.error}, status=status.HTTP_400_BAD_REQUEST)
 
 
-class Add_Materials(APIVIew):
+class Add_Materials(APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self,request,pk):
@@ -43,6 +43,6 @@ class Get_Adviser_courses(APIView):
             get_adviser = Courses.objects.filter(created_teacher_name=request.user)
             serializer = CreateCourseSerializer(get_adviser ,many=True)
             return Response({'message':'The advisers courses are taken' , 'Data':serializer.data}, status=status.HTTP_200_OK)
-        exception as e:
+        except Exception as e:
             return Response({'message':str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
